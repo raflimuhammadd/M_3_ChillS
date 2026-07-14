@@ -1,0 +1,92 @@
+/**
+ * Calculate optimal hover alignment based on card position in viewport
+ */
+function calculateHoverAlignment(card) {
+    const rect = card.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+    
+    // Constants
+    const HOVER_WIDTH = 300;  // .card-hover width from CSS
+    const CARD_WIDTH = rect.width;  // actual card width (234px on desktop)
+    const HOVER_OVERHANG = (HOVER_WIDTH - CARD_WIDTH) / 2;  // ~33px each side
+    const EDGE_THRESHOLD = HOVER_OVERHANG + 20;  // 20px safety margin
+    
+    // Calculate space available on each side
+    const leftSpace = rect.left;
+    const rightSpace = viewportWidth - rect.right;
+    
+    // Decision logic
+    if (leftSpace < EDGE_THRESHOLD) {
+        return 'left';
+    }
+    
+    if (rightSpace < EDGE_THRESHOLD) {
+        return 'right';
+    }
+    
+    return 'center';
+}
+
+/**
+ * Apply alignment class to card hover element
+ */
+function applyHoverAlignment(card, alignment) {
+    const cardHover = card.querySelector('.card-hover');
+    
+    if (!cardHover) return;
+    
+    // Remove all alignment classes
+    cardHover.classList.remove('card-hover--left', 'card-hover--center', 'card-hover--right');
+    
+    // Add appropriate class
+    cardHover.classList.add(`card-hover--${alignment}`);
+
+    cardHover.classList.add(`card-hover--${alignment}`);
+    console.log(`Card aligned: ${alignment}, width: ${alignment === 'center' ? '300px' : '290px'}`);
+}
+
+/**
+ * Initialize dynamic hover positioning for all cards with hover effects
+ */
+function initDynamicCardHover() {
+    // Only run on desktop (min-width: 768px)
+    if (window.innerWidth < 768) {
+        return;
+    }
+    
+    // Select all cards that have hover effects (portrait cards only)
+    const cardsWithHover = document.querySelectorAll('.card:not(.card--landscape)');
+    
+    cardsWithHover.forEach(card => {
+        const cardHover = card.querySelector('.card-hover');
+        
+        // Skip cards without hover elements
+        if (!cardHover) return;
+        
+        // On mouse enter: calculate and apply alignment
+        card.addEventListener('mouseenter', () => {
+            const alignment = calculateHoverAlignment(card);
+            applyHoverAlignment(card, alignment);
+        });
+    });
+    
+    console.log(`Dynamic hover positioning initialized for ${cardsWithHover.length} cards`);
+}
+
+/**
+ * Reinitialize on window resize
+ */
+let resizeTimeout;
+function handleResize() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        initDynamicCardHover();
+    }, 250);  // Debounce resize events
+}
+
+// Initialize on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Initializing dynamic card hover positioning...');
+    initDynamicCardHover();
+    window.addEventListener('resize', handleResize);
+});

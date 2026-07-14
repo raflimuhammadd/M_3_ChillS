@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - CHILL</title>
+    <link rel="icon" href="../images/chill-vect.png">
+    <link rel="stylesheet" href="../styles/authentication.css">
+</head>
+<body>
+    <main>
+        <img class="logo" src="../images/chill-logo.png" alt="chill-logo">
+        <div class="header__title">
+            <h1>Daftar</h1>
+            <p>Selamat Datang!</p>
+        </div>
+        <form action="#" method="post">
+            <div class="form__group">
+                <label for="username">Username</label>
+                <input
+                    type="text" 
+                    placeholder="Masukkan username"
+                    id="username"
+                    name="username"
+                    required
+                />
+            </div>
+            <div class="form__group">
+                <label for="username">Kata Sandi</label>
+                <input
+                    type="password" 
+                    placeholder="Masukkan kata sandi"
+                    id="password"
+                    name="password"
+                    required
+                />
+                <div class="register__action">
+                    <img src="../images/eye-off.png" alt="" width="50">
+                </div>
+                <label for="username">Konfirmasi Kata Sandi</label>
+                <input
+                    type="password" 
+                    placeholder="Masukkan kata sandi"
+                    id="password"
+                    name="password"
+                    required
+                />
+                <div class="register__action">
+                    <img src="../images/eye-off.png" alt="" width="50">
+                    <p>Sudah punya akun?<a href="../pages/login.html">Masuk</a></p>
+                    <p><a href="#">Lupa kata sandi</a></p>
+                </div>
+            </div>
+            <div class="form__action">
+                <button type="submit">Masuk</button>
+                <p>Atau</p>
+                <button type="button">
+                    <img src="../images/google-icon.png" alt="google">
+                    Masuk dengan Google
+                </button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
