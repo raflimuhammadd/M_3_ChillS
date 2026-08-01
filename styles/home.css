@@ -21,6 +21,10 @@
   --accent-blue-hover: #0060CC;
   --accent-gray: #C1C2C4;
   --accent-dark-gray: #22282A;
+
+  --btn-info-default: #0586FF;
+  --btn-info-hover: #0367DB;
+  --btn-info-active: #024DB7;
   
   --border-color: #333333;     /* Subtle borders */
   --focus-ring: 0 0 0 3px rgba(229, 9, 20, 0.3); /* Focus outline */
@@ -215,7 +219,7 @@ input:focus {
     font-size: clamp(0.75rem, 2.5vw, 1rem);
     font-weight: 500;
     padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
     transition: background-color var(--transition-base);
     display: block;
 }
@@ -223,6 +227,8 @@ input:focus {
 .nav-link:hover {
     background-color: var(--bg-hover);
     color: var(--text-white);
+    border-radius: var(--radius-lg);
+    scale: 1.1;
 }
 
 .navbar-right {
@@ -432,13 +438,17 @@ input:focus {
 }
 
 .btn-primary {
-    background-color: var(--accent-blue);
+    background-color: var(--btn-info-default);
     color: var(--text-white);
 }
 
 .btn-primary:hover {
-    background-color: var(--accent-blue-hover);
+    background-color: var(--btn-info-hover);
     transform: scale(1.05);
+}
+
+.btn-primary:active {
+    background-color: var(--btn-info-active);
 }
 
 .btn-secondary {
